@@ -1,0 +1,423 @@
+nohup: 忽略输入
+/home/luozichen/project/Agent_EchoCompass/main.py:65: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/home/luozichen/project/Agent_EchoCompass/main.py:115: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+INFO:     Started server process [389157]
+INFO:     Waiting for application startup.
+2025-11-06 18:11:37,868 - __main__ - INFO - 正在加载 Qwen 模型...
+/home/luozichen/.conda/envs/qwen_env/lib/python3.10/site-packages/auto_gptq/nn_modules/triton_utils/kernels.py:411: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  def forward(ctx, input, qweight, scales, qzeros, g_idx, bits, maxq):
+/home/luozichen/.conda/envs/qwen_env/lib/python3.10/site-packages/auto_gptq/nn_modules/triton_utils/kernels.py:419: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  def backward(ctx, grad_output):
+/home/luozichen/.conda/envs/qwen_env/lib/python3.10/site-packages/auto_gptq/nn_modules/triton_utils/kernels.py:461: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float16)
+2025-11-06 18:11:38,366 - auto_gptq.nn_modules.qlinear.qlinear_cuda - WARNING - CUDA extension not installed.
+2025-11-06 18:11:38,366 - auto_gptq.nn_modules.qlinear.qlinear_cuda_old - WARNING - CUDA extension not installed.
+/home/luozichen/.conda/envs/qwen_env/lib/python3.10/site-packages/transformers/modeling_utils.py:5055: FutureWarning: `_is_quantized_training_enabled` is going to be deprecated in transformers 4.39.0. Please use `model.hf_quantizer.is_trainable` instead
+  warnings.warn(
+`loss_type=None` was set in the config but it is unrecognised.Using the default loss: `ForCausalLMLoss`.
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:02,  1.94it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:03<00:05,  1.75s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:05<00:04,  2.18s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:08<00:02,  2.20s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:09<00:00,  1.81s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:09<00:00,  1.83s/it]
+2025-11-06 18:11:49,158 - __main__ - INFO - ✓ TF32 加速已启用
+2025-11-06 18:11:49,158 - __main__ - INFO - 正在预热模型...
+2025-11-06 18:12:00,124 - __main__ - INFO - ✓ 模型加载完成
+2025-11-06 18:12:00,124 - __main__ - INFO - ✓ 运行设备: cuda:0
+2025-11-06 18:12:00,124 - __main__ - INFO - ✓ 显存占用: 3.85 GB
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     115.24.178.81:58314 - "GET /static HTTP/1.1" 404 Not Found
+INFO:     115.24.178.81:58414 - "GET /static/frontend.html HTTP/1.1" 404 Not Found
+INFO:     59.67.81.73:63610 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63610 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63610 - "OPTIONS /analyze_emotion HTTP/1.1" 200 OK
+2025-11-06 21:36:18,431 - __main__ - INFO - 收到情感分析请求，文本长度: 9
+INFO:     59.67.81.73:63844 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63844 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 21:36:33,178 - __main__ - INFO - 模型原始输出: {
+  "emotion_type": "快乐",
+  "empathy_score": 0.1,
+  "interest_keywords": ["开心"],
+  "confidence": 0.9...
+2025-11-06 21:36:33,179 - __main__ - INFO - 情感分析完成: 快乐
+INFO:     59.67.81.73:63610 - "POST /analyze_emotion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63610 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63610 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64326 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64326 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64326 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64326 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 21:38:28,561 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+2025-11-06 21:38:46,156 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "哈哈，看来你真的没注意到我在打字呢，下次记得看我的输入哦。",
+  "reasoning": "以轻松幽默的方式回应，展示理解并带出小提醒"
+}...
+2025-11-06 21:38:46,156 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:64783 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64783 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 21:39:53,158 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+2025-11-06 21:40:06,809 - __main__ - INFO - 模型原始输出: {"suggestion_text": "可能是家里比较安静，声音传不过去。你那边需要我轻点打字吗？","reasoning":"考虑到家人之间的关怀和理解"}...
+2025-11-06 21:40:06,809 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:65469 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /analyze_emotion HTTP/1.1" 200 OK
+2025-11-06 21:40:39,726 - __main__ - INFO - 收到情感分析请求，文本长度: 69
+INFO:     59.67.81.73:49555 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49555 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 21:40:56,261 - __main__ - INFO - 模型原始输出: {
+  "emotion_type": "中性",
+  "empathy_score": 0.1,
+  "interest_keywords": ["打游戏", "跑实验"],
+  "confiden...
+2025-11-06 21:40:56,261 - __main__ - INFO - 情感分析完成: 中性
+INFO:     59.67.81.73:65469 - "POST /analyze_emotion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 21:41:27,998 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+2025-11-06 21:41:47,742 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "可能是办公室比较安静，声音不容易传过来。需要我调整一下位置或者时间再沟通吗？",
+  "reasoning": "考虑到对方可能没有注意到你的工作环境，...
+2025-11-06 21:41:47,742 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:65469 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65469 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50260 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51180 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51180 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51180 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51180 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51630 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51630 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51630 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51630 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52086 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52086 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52315 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53009 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54570 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55314 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57297 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59610 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59610 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59610 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59610 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60335 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60335 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60812 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60812 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61280 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61280 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61794 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61794 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62267 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62267 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62730 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62730 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63239 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63239 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63712 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63712 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64203 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64203 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64697 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64697 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65203 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65203 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49281 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49281 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49773 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49773 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50241 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50241 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50713 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:50713 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /analyze_emotion HTTP/1.1" 200 OK
+2025-11-06 22:20:01,923 - __main__ - INFO - 收到情感分析请求，文本长度: 76
+2025-11-06 22:20:19,174 - __main__ - INFO - 模型原始输出: {
+  "emotion_type": "愤怒",
+  "empathy_score": 0.8,
+  "interest_keywords": ["不知道别跟我说", "爱听不听"],
+  "con...
+2025-11-06 22:20:19,174 - __main__ - INFO - 情感分析完成: 愤怒
+INFO:     59.67.81.73:51146 - "POST /analyze_emotion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:20:43,003 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:51784 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51784 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:21:00,955 - __main__ - INFO - 模型原始输出: {"suggestion_text": "对不起，我没有注意到你可能觉得被打扰了。我们继续吧，如果有什么我可以改进的地方，请告诉我。", "reasoning": "缓和气氛，表达歉意并邀请对方提出具...
+2025-11-06 22:21:00,955 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:51146 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:21:10,299 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:51784 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51784 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:21:26,447 - __main__ - INFO - 模型原始输出: {"suggestion_text": "对不起，我可能没有表达清楚，我只是觉得你在的时候我很难集中注意力，不是故意要打扰你。", "reasoning": "解释自己的行为，展现理解与尊重"}...
+2025-11-06 22:21:26,447 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:51146 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:51146 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52495 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52495 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52495 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52495 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52954 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52954 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52954 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:52954 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53432 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53432 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53432 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:53432 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54045 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54045 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54509 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54509 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54993 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54993 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54993 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:54993 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55373 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55373 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55373 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55373 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55865 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:55865 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:56305 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:56305 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:56780 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:56780 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57277 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57277 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57763 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57763 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57763 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:57763 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58205 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58897 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58897 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58897 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:58897 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:59375 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60086 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60086 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:60394 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:41:06,272 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:61470 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61470 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:41:26,015 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "对不起，我没有注意到你可能在忙。如果你不想聊，我先去忙别的，等会儿再聊好吗？",
+  "reasoning": "表达歉意并给对方空间，显示理解和关心"...
+2025-11-06 22:41:26,016 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:61248 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:42:06,217 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+2025-11-06 22:42:19,514 - __main__ - INFO - 模型原始输出: {"suggestion_text": "对不起，我可能语气有点急，我不是那个意思。你在说什么？", "reasoning": "缓和气氛，承认自己的不当之处"}...
+2025-11-06 22:42:19,515 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:61248 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:42:39,975 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:62194 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62194 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:42:59,720 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "对不起，我没有注意到你的感受，可能我的话有点直接。我们可以用更温和的方式交流。",
+  "reasoning": "承认自己的不当之处，并提出改善沟通方...
+2025-11-06 22:42:59,720 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:61248 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:43:36,899 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:62685 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62685 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:43:53,419 - __main__ - INFO - 模型原始输出: {"suggestion_text": "对不起，刚才可能是我语气不太好，你可能觉得不舒服了。我们聊聊吧，看看能不能解决这个问题。", "reasoning": "表达歉意并尝试缓和紧张的关系"}...
+2025-11-06 22:43:53,419 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:61248 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:44:13,248 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+INFO:     59.67.81.73:62685 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:62685 - "GET /health HTTP/1.1" 200 OK
+2025-11-06 22:44:29,768 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "对不起，我可能语气有点重了，你如果觉得不方便的话我们就别聊了。",
+  "reasoning": "缓和紧张气氛，表达理解和尊重对方的感受"
+}...
+2025-11-06 22:44:29,768 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:61248 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:61248 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63655 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63655 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63655 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:63655 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64138 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64842 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64842 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64842 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:48:21,135 - __main__ - INFO - 收到建议生成请求，对话轮数: 7
+2025-11-06 22:48:33,355 - __main__ - INFO - 模型原始输出: {"suggestion_text": "对不起，我可能误解了你的意思。我们继续工作吧。", "reasoning": "缓和气氛，避免冲突"}...
+2025-11-06 22:48:33,355 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:64842 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64842 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:64842 - "GET /health HTTP/1.1" 200 OK
+INFO:     115.24.178.81:43608 - "GET /static HTTP/1.1" 404 Not Found
+INFO:     59.67.81.73:65333 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:65333 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /generate_suggestion HTTP/1.1" 200 OK
+2025-11-06 22:51:56,190 - __main__ - INFO - 收到建议生成请求，对话轮数: 5
+2025-11-06 22:52:14,871 - __main__ - INFO - 模型原始输出: {
+  "suggestion_text": "当然可以！我周末有空的时候会把代码发给你。",
+  "reasoning": "表现出对朋友兴趣的认可，并承诺在方便时分享，既体现了友好又不过于仓促。"...
+2025-11-06 22:52:14,871 - __main__ - INFO - 建议生成完成
+INFO:     59.67.81.73:49677 - "POST /generate_suggestion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "GET /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /analyze_emotion HTTP/1.1" 200 OK
+2025-11-06 22:52:20,682 - __main__ - INFO - 收到情感分析请求，文本长度: 143
+2025-11-06 22:52:37,206 - __main__ - INFO - 模型原始输出: {
+  "emotion_type": "快乐",
+  "empathy_score": 0.1,
+  "interest_keywords": ["完成了一个项目", "聊天机器人"],
+  "co...
+2025-11-06 22:52:37,206 - __main__ - INFO - 情感分析完成: 快乐
+INFO:     59.67.81.73:49677 - "POST /analyze_emotion HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "OPTIONS /health HTTP/1.1" 200 OK
+INFO:     59.67.81.73:49677 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-11-06 22:52:50,959 - __main__ - INFO - ✓ 资源已清理
+INFO:     Application shutdown complete.
+INFO:     Finished server process [389157]

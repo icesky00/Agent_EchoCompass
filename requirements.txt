@@ -1,0 +1,30 @@
+# ============ 核心机器学习框架 ============
+# PyTorch with CUDA 12.4 (2025 年最新稳定版)
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+torchaudio==2.6.0+cu124
+
+# ============ Transformers 生态系统 ============
+transformers==4.47.1
+tokenizers==0.21.0
+accelerate==1.2.1
+#safetensors==0.4.6
+safetensors
+huggingface-hub==0.27.0
+
+# ============ ModelScope（阿里云模型库）============
+modelscope==1.23.0
+
+# ============ FastAPI 框架 ============
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.5
+python-multipart==0.0.20
+
+# ============ 量化支持 ============
+bitsandbytes==0.45.0
+
+# ============ 工具库 ============
+numpy>=1.24.0
+requests>=2.31.0

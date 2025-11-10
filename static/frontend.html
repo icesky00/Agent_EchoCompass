@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心语罗盘 - AI 社交智能助手（Qwen 驱动）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        .powered-by {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #667eea;
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .result h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .result-item {
+            margin: 12px 0;
+            color: #333;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        .result-item strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .loading.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #fff5f5;
+            border-left-color: #e53e3e;
+            color: #c53030;
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .keyword-tag {
+            background: #e8ecff;
+            color: #667eea;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 18px;
+            background: #48bb78;
+            color: white;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+        
+        .status-indicator.online {
+            display: block;
+            background: #48bb78;
+        }
+        
+        .status-indicator.offline {
+            background: #f56565;
+            display: block;
+        }
+        
+        .status-indicator::before {
+            content: '●';
+            margin-right: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .score-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        .suggestion-box {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 15px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        .tip {
+            background: #fffaf0;
+            border-left: 4px solid #f6ad55;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #744210;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-indicator" id="statusIndicator">连接中...</div>
+    
+    <div class="container">
+        <h1>🧭 心语罗盘</h1>
+        <p class="subtitle">AI 社交智能助手 - 让每一句话都温暖人心</p>
+        <p class="powered-by">⚡ Powered by Qwen2.5 & FastAPI</p>
+        
+        <!-- 情感分析模块 -->
+        <div class="section">
+            <h2>💭 情感分析</h2>
+            <textarea 
+                id="emotionInput" 
+                placeholder="输入想要分析的文本，例如：&#10;&#10;今天真是太开心了！完成了一个大项目，感觉特别有成就感。终于可以放松一下了，打算晚上和朋友们出去庆祝。"
+            ></textarea>
+            <button onclick="analyzeEmotion()" id="analyzeBtn">🔍 开始分析</button>
+            <div class="loading" id="emotionLoading">正在分析中，请稍候...</div>
+            <div id="emotionResult"></div>
+            <div class="tip">
+                💡 <strong>提示：</strong>按 Ctrl+Enter 快速提交分析
+            </div>
+        </div>
+        
+        <!-- 对话建议模块 -->
+        <div class="section">
+            <h2>💡 对话建议生成</h2>
+            <textarea 
+                id="dialogueInput" 
+                placeholder="输入对话历史，每行一条消息，例如：&#10;&#10;朋友：我最近工作压力好大啊，每天都加班到很晚&#10;我：怎么了，发生什么事了？&#10;朋友：项目deadline快到了，但进度还差很多，领导天天催&#10;我：听起来确实挺辛苦的"
+            ></textarea>
+            <select id="relationshipSelect">
+                <option value="朋友">👥 朋友关系</option>
+                <option value="恋人">❤️ 恋人关系</option>
+                <option value="家人">👨‍👩‍👧 家人关系</option>
+                <option value="同事">💼 同事关系</option>
+            </select>
+            <button onclick="generateSuggestion()" id="suggestBtn">✨ 生成建议</button>
+            <div class="loading" id="suggestionLoading">AI 正在思考最佳回复...</div>
+            <div id="suggestionResult"></div>
+            <div class="tip">
+                💡 <strong>提示：</strong>建议会根据对话上下文和关系类型智能调整
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API 配置
+        const API_BASE_URL = 'http://115.24.178.81:8000';
+        
+        // 检查服务器状态
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const indicator = document.getElementById('statusIndicator');
+                    const gpuStatus = data.cuda_available ? 'GPU 已启用' : 'CPU 模式';
+                    const memory = data.gpu_memory_allocated_gb ? `${data.gpu_memory_allocated_gb.toFixed(1)}GB` : '';
+                    indicator.textContent = `服务器在线 | ${gpuStatus} ${memory}`;
+                    indicator.className = 'status-indicator online';
+                    return true;
+                } else {
+                    throw new Error('服务器响应异常');
+                }
+            } catch (error) {
+                const indicator = document.getElementById('statusIndicator');
+                indicator.textContent = '服务器离线 - 请启动后端';
+                indicator.className = 'status-indicator offline';
+                return false;
+            }
+        }
+        
+        // 情感分析功能
+        async function analyzeEmotion() {
+            const input = document.getElementById('emotionInput').value.trim();
+            const resultDiv = document.getElementById('emotionResult');
+            const loading = document.getElementById('emotionLoading');
+            const btn = document.getElementById('analyzeBtn');
+            
+            if (!input) {
+                alert('⚠️ 请输入要分析的文本');
+                return;
+            }
+            
+            // 显示加载状态
+            loading.classList.add('active');
+            btn.disabled = true;
+            resultDiv.innerHTML = '';
+            
+            try {
+                const startTime = Date.now();
+                
+                const response = await fetch(`${API_BASE_URL}/analyze_emotion`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: input })
+                });
+                
+                const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // 情感类型映射
+                const emotionEmojis = {
+                    '快乐': '😊',
+                    '悲伤': '😢',
+                    '愤怒': '😠',
+                    '焦虑': '😰',
+                    '恐惧': '😨',
+                    '中性': '😐'
+                };
+                
+                const empathyPercent = (data.empathy_score * 100).toFixed(1);
+                const confidencePercent = (data.confidence * 100).toFixed(1);
+                
+                // 共情评级
+                let empathyLevel = '';
+                let empathyColor = '';
+                if (data.empathy_score > 0.7) {
+                    empathyLevel = '需要高度关怀';
+                    empathyColor = '#e53e3e';
+                } else if (data.empathy_score > 0.4) {
+                    empathyLevel = '需要适度关注';
+                    empathyColor = '#f6ad55';
+                } else {
+                    empathyLevel = '情绪较稳定';
+                    empathyColor = '#48bb78';
+                }
+                
+                // 显示结果
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h3>📊 分析结果 <span style="font-size: 12px; color: #999; font-weight: normal;">(${duration}秒)</span></h3>
+                        <div class="result-item">
+                            <strong>情感类型：</strong>
+                            <span style="font-size: 24px;">${emotionEmojis[data.emotion_type] || '🤔'}</span>
+                            ${data.emotion_type}
+                        </div>
+                        <div class="result-item">
+                            <strong>共情得分：</strong>${empathyPercent}%
+                            <span style="color: ${empathyColor}; margin-left: 8px; font-weight: 600;">
+                                (${empathyLevel})
+                            </span>
+                            <div class="score-bar">
+                                <div class="score-fill" style="width: ${empathyPercent}%; background: ${empathyColor};"></div>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <strong>分析置信度：</strong>${confidencePercent}%
+                        </div>
+                        ${data.interest_keywords && data.interest_keywords.length > 0 ? `
+                            <div class="result-item">
+                                <strong>兴趣关键词：</strong>
+                                <div class="keywords">
+                                    ${data.interest_keywords.map(kw => `<span class="keyword-tag">${kw}</span>`).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ 分析失败</h3>
+                        <div class="result-item"><strong>错误信息：</strong>${error.message}</div>
+                        <div class="result-item" style="font-size: 13px; margin-top: 12px;">
+                            <strong>排查建议：</strong><br>
+                            1. 检查后端服务是否正常运行 (http://localhost:8000)<br>
+                            2. 查看后端控制台是否有错误日志<br>
+                            3. 确认 GPU 和模型加载正常
+                        </div>
+                    </div>
+                `;
+            } finally {
+                loading.classList.remove('active');
+                btn.disabled = false;
+            }
+        }
+        
+        // 对话建议功能
+        async function generateSuggestion() {
+            const input = document.getElementById('dialogueInput').value.trim();
+            const relationship = document.getElementById('relationshipSelect').value;
+            const resultDiv = document.getElementById('suggestionResult');
+            const loading = document.getElementById('suggestionLoading');
+            const btn = document.getElementById('suggestBtn');
+            
+            if (!input) {
+                alert('⚠️ 请输入对话历史');
+                return;
+            }
+            
+            // 解析对话历史
+            const dialogueContext = input.split('\n').filter(line => line.trim());
+            
+            if (dialogueContext.length === 0) {
+                alert('⚠️ 对话历史不能为空');
+                return;
+            }
+            
+            // 显示加载状态
+            loading.classList.add('active');
+            btn.disabled = true;
+            resultDiv.innerHTML = '';
+            
+            try {
+                const startTime = Date.now();
+                
+                const response = await fetch(`${API_BASE_URL}/generate_suggestion`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        dialogue_context: dialogueContext,
+                        relationship_status: relationship,
+                        user_emotion: null
+                    })
+                });
+                
+                const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+                
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // 显示结果
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h3>💬 建议回复 <span style="font-size: 12px; color: #999; font-weight: normal;">(${duration}秒)</span></h3>
+                        <div class="suggestion-box">
+                            "${data.suggestion_text}"
+                        </div>
+                        ${data.reasoning ? `
+                            <div class="result-item" style="margin-top: 18px; padding-top: 18px; border-top: 1px solid #e9ecef;">
+                                <strong>💡 建议理由：</strong><br>
+                                <span style="color: #666;">${data.reasoning}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>❌ 生成失败</h3>
+                        <div class="result-item"><strong>错误信息：</strong>${error.message}</div>
+                        <div class="result-item" style="font-size: 13px; margin-top: 12px;">
+                            <strong>排查建议：</strong><br>
+                            1. 检查后端服务是否正常运行 (http://localhost:8000)<br>
+                            2. 查看后端控制台是否有错误日志<br>
+                            3. 确认模型推理功能正常
+                        </div>
+                    </div>
+                `;
+            } finally {
+                loading.classList.remove('active');
+                btn.disabled = false;
+            }
+        }
+        
+        // 页面加载时初始化
+        window.addEventListener('load', () => {
+            checkServerStatus();
+            setInterval(checkServerStatus, 30000); // 每 30 秒检查一次
+        });
+        
+        // 快捷键支持
+        document.getElementById('emotionInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                analyzeEmotion();
+            }
+        });
+        
+        document.getElementById('dialogueInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                generateSuggestion();
+            }
+        });
+    </script>
+</body>
+</html>
