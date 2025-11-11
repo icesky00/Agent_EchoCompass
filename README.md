@@ -120,8 +120,13 @@ python main.py
 # 双击 index.html 文件
 
 # 方法 2：启动本地服务器（推荐）
-python -m http.server 3000
-# 访问 http://localhost:3000
+python -m http.server 8000
+# 访问 http://localhost:8000/static/frontend.html
+
+# 方法 3：如果在服务器运行
+# 建议添加穿透插件如open in default browser
+# 访问 http://localhost:xxxx(前端端口号)/static/frontend.html
+
 ```
 
 ## 📚 使用指南
